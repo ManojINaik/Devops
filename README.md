@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project Name
 
-## Getting Started
+Welcome to the Project Name! This project is designed to enhance skills assessment analytics by integrating advanced features and ensuring accurate scoring for submitted solutions.
 
-First, run the development server:
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Setup Instructions](#setup-instructions)
+- [Environment Variables](#environment-variables)
+- [Collaborators](#collaborators)
+- [Video Resources](#video-resources)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Overview
+This project provides a comprehensive platform for skills assessment, allowing users to generate coding questions, submit solutions, and receive detailed analytics on their performance. The admin dashboard offers insights into overall performance, skill level distribution, and focus area strengths.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
+- Skills Assessment API for storing and evaluating assessment results.
+- Admin Dashboard with analytics for total assessments, average scores, and skill distribution.
+- Integration with GLHF API for question generation and solution assessment.
+- User authentication and authorization using Clerk.
+- Visualizations using Recharts for an interactive experience.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Technology Stack
+- **Frontend**: React, Next.js
+- **Backend**: Node.js, Express
+- **Database**: PostgreSQL, Prisma
+- **APIs**: GLHF API, Clerk API
+- **Charts**: Recharts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Setup Instructions
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/ManojINaik/Devops
+   cd Devops
+   ```
 
-## Learn More
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Create Environment File**:
+   Create a `.env` file in the root directory and add the following variables:
+   ```env
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<YOUR-API-KEY>
+   CLERK_SECRET_KEY=<YOUR-API-KEY>
+   DATABASE_URL=<YOUR-API-KEY>
+   NEXT_PUBLIC_GLHF_API_KEY=<YOUR-API-KEY>
+   # Add other environment variables as needed
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Generate Prisma Client**:
+   ```bash
+   npx prisma generate
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. **Push Database Schema**:
+   ```bash
+   npx prisma db push
+   ```
 
-## Deploy on Vercel
+6. **Run the Development Server**:
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Environment Variables
+- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`: Your Clerk public key.
+- `CLERK_SECRET_KEY`: Your Clerk secret key.
+- `DATABASE_URL`: Connection string for your PostgreSQL database.
+- `NEXT_PUBLIC_GLHF_API_KEY`: API key for GLHF API.
+- Additional keys for other integrated services.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Collaborators
+- **Abhishek**: Role - [GitHub](https://github.com/abhishekreddywadi)
+- **Areez**: Role - [GitHub](https://github.com/AreezM)
+- **Sujay**: Role - [GitHub](https://github.com/sujay-bhandari)
+
+## 📹 Video Resources
+Explore the video demonstrations to understand the project better:
+
+### 📺 Admin Panel
+<video src="./video/admin.mp4" controls width="640" height="360"></video>
+
+### 📺 Analytics Overview
+<video src="./video/analytics.mp4" controls width="640" height="360"></video>
+
+### 📺 Aptitude Feature
+<video src="./video/aptitude.mp4" controls width="640" height="360"></video>
+
+### 📺 Dashboard Walkthrough
+<video src="./video/dashboard.mp4" controls width="640" height="360"></video>
+
+### 📺 Skills Section
+<video src="./video/skills.mp4" controls width="640" height="360"></video>
+
+
+
+Explore the video demonstrations and tutorials in the [video](./video) directory to get a better understanding of the project features and setup.
+
+---
+
+Feel free to reach out to the collaborators for any questions or contributions. Enjoy exploring the project!
