@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model SkillAssessment {
+  id             String      @id @default(cuid())
+  userId         String
+  focusAreas     String[]
+  skillLevel     String
+  overallScore   Int
+  categoryScores Json
+  correctness    Boolean
+  timestamp      DateTime
+  
+  @@index([userId])
+  @@index([timestamp])
+}
