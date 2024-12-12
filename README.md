@@ -79,21 +79,20 @@ This project provides a comprehensive platform for skills assessment, allowing u
 
 ## 📹 Video Resources
 Explore the video demonstrations to understand the project better:
-
 ### 📺 Admin Panel
-<video src="./video/admin.mp4" controls width="640" height="360"></video>
+https://github.com/ManojINaik/Devops/assets/158455994/c4f3d7e9-f9c3-4e10-a5c0-7e91b59a0c8a
 
 ### 📺 Analytics Overview
-<video src="./video/analytics.mp4" controls width="640" height="360"></video>
+https://github.com/ManojINaik/Devops/assets/158455994/2e7e6a5a-5a4a-4f55-a3af-c5c3f5a4e6d1
 
 ### 📺 Aptitude Feature
-<video src="./video/aptitude.mp4" controls width="640" height="360"></video>
+https://github.com/ManojINaik/Devops/assets/158455994/1e3c7d58-cac7-4e1a-b91b-7d4e57a8c0f1
 
 ### 📺 Dashboard Walkthrough
-<video src="./video/dashboard.mp4" controls width="640" height="360"></video>
+https://github.com/ManojINaik/Devops/assets/158455994/a3d4b2e6-fb9f-4bc3-bfd3-b4a3d8a7e7bf
 
 ### 📺 Skills Section
-<video src="./video/skills.mp4" controls width="640" height="360"></video>
+https://github.com/ManojINaik/Devops/assets/158455994/3e2d7e91-e8b3-4b9a-9e7f-f9c1a0c31d53
 
 
 
