@@ -7,16 +7,48 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id            String          @id @default(cuid())
+  email         String         @unique
+  name          String?
+  interviews    Interview[]
+  aptitudeTests AptitudeTest[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model Interview {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  score     Int
+  feedback  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model AptitudeTest {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  score     Int
+  category  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
 model SkillAssessment {
-  id             String      @id @default(cuid())
+  id             String   @id @default(cuid())
   userId         String
-  focusAreas     String[]
   skillLevel     String
   overallScore   Int
   categoryScores Json
-  correctness    Boolean
-  timestamp      DateTime
-  
+  timestamp      DateTime @default(now())
+
   @@index([userId])
   @@index([timestamp])
 }
