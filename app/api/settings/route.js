@@ -1,10 +1,8 @@
 import { db } from "@/utils/db";
 import { UserSettings } from "@/utils/schema";
 import { eq } from "drizzle-orm";
-import { currentUser } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-
-export const dynamic = "force-static";
 
 export async function GET() {
   try {
