@@ -3,16 +3,23 @@ import { drizzle } from 'drizzle-orm/neon-http';
 import * as schema from './schema';
 
 function getConnectionString() {
-  const dbUrl = process.env.DATABASE_URL || process.env.NEXT_PUBLIC_DRIZZLE_URL;
+  // Try all possible environment variables
+  const dbUrl = 
+    process.env.POSTGRES_PRISMA_URL || 
+    process.env.POSTGRES_URL_NON_POOLING || 
+    process.env.DATABASE_URL || 
+    process.env.NEXT_PUBLIC_DRIZZLE_URL;
   
   if (!dbUrl) {
     console.error('Environment variables check:', {
+      POSTGRES_PRISMA_URL: !!process.env.POSTGRES_PRISMA_URL,
+      POSTGRES_URL_NON_POOLING: !!process.env.POSTGRES_URL_NON_POOLING,
       DATABASE_URL: !!process.env.DATABASE_URL,
       NEXT_PUBLIC_DRIZZLE_URL: !!process.env.NEXT_PUBLIC_DRIZZLE_URL,
       NODE_ENV: process.env.NODE_ENV
     });
     throw new Error(
-      'Database connection string not found. Please set either DATABASE_URL or NEXT_PUBLIC_DRIZZLE_URL environment variable.'
+      'Database connection string not found. Please check environment variables.'
     );
   }
 
