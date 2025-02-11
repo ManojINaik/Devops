@@ -1,17 +1,17 @@
 import { db } from "@/utils/db";
 import { UserSettings } from "@/utils/schema";
 import { eq } from "drizzle-orm";
-import { currentUser } from "@clerk/nextjs";
+import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const user = await currentUser();
-    if (!user) {
+    const { userId } = getAuth();
+    if (!userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const userEmail = user.emailAddresses[0].emailAddress;
+    const userEmail = userId; // Use userId instead of email for identification
 
     const settings = await db
       .select()
@@ -52,12 +52,12 @@ export async function GET() {
 
 export async function PUT(request) {
   try {
-    const user = await currentUser();
-    if (!user) {
+    const { userId } = getAuth();
+    if (!userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const userEmail = user.emailAddresses[0].emailAddress;
+    const userEmail = userId;
     const updates = await request.json();
 
     // Check if settings exist
