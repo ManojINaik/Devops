@@ -1,10 +1,15 @@
 import OpenAI from "openai";
 import { NextResponse } from "next/server";
 
-const openai = new OpenAI({
-  apiKey: process.env.GLHF_API_KEY,
-  baseURL: "https://glhf.chat/api/openai/v1",
-});
+let openai;
+try {
+  openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY || process.env.GLHF_API_KEY || 'dummy-key',
+    ...(process.env.GLHF_API_KEY ? { baseURL: "https://glhf.chat/api/openai/v1" } : {})
+  });
+} catch (error) {
+  console.error("Error initializing OpenAI:", error);
+}
 
 const getTopicPrompt = (topic) => {
   const prompts = {
@@ -19,6 +24,13 @@ const getTopicPrompt = (topic) => {
 
 export async function GET(req) {
   try {
+    // Check if OpenAI is properly initialized
+    if (!openai || (!process.env.OPENAI_API_KEY && !process.env.GLHF_API_KEY)) {
+      return NextResponse.json({ 
+        error: "OpenAI API is not configured. Please add OPENAI_API_KEY or GLHF_API_KEY to environment variables." 
+      }, { status: 503 });
+    }
+
     const { searchParams } = new URL(req.url);
     const topic = searchParams.get('topic');
 
@@ -48,16 +60,13 @@ export async function GET(req) {
     });
 
     const questions = JSON.parse(completion.choices[0].message.content);
-
-    // Store correct answers in session or database for later validation
-    // For now, we'll remove correct answers from client response
     const clientQuestions = questions.map(({ correctAnswer, ...rest }) => rest);
 
     return NextResponse.json({ questions: clientQuestions });
   } catch (error) {
     console.error("Error generating questions:", error.response ? error.response.data : error.message);
     return NextResponse.json(
-      { error: "Failed to generate questions" },
+      { error: "Failed to generate questions. Please ensure API keys are properly configured." },
       { status: 500 }
     );
   }
